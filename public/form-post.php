@@ -1,10 +1,10 @@
 <?php
-    require_once('../application/libs/ConfigHelper.php');
+require_once('../application/libs/ConfigHelper.php');
 require_once('../application/libs/recaptchalib.php');
 $ch = ConfigHelper::getInstance();
 
+$privatekey = $ch->getConfig()->recaptcha_privatekey;
 
-$privatekey = "6LfqpM8SAAAAAD5qQGu8_hKtbKWhTTamLf-keYT_";
 $resp = recaptcha_check_answer($privatekey,
    $_SERVER["REMOTE_ADDR"],
    $_POST["recaptcha_challenge_field"],

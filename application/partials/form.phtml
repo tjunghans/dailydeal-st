@@ -126,7 +126,7 @@ j.        Telefonnummer (optional aber empfohlen)-->
             <label class="control-label">Sicherheit</label>
             <?php
           require_once('../application/libs/recaptchalib.php');
-          $publickey = "6LfqpM8SAAAAAOoYHvyOB75poh1oGk_0ceo0oMq-"; // you got this from the signup page
+          $publickey = $ch->getConfig()->recaptcha_publickey;
           echo recaptcha_get_html($publickey);
         ?>
         </div>

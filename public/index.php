@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php
+require_once('../application/libs/ConfigHelper.php');
+$ch = ConfigHelper::getInstance();
+?><!DOCTYPE html>
 <html>
 <head>
     <title>Silvio Tossi Daily Deal</title>
