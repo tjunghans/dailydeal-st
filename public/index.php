@@ -12,16 +12,17 @@ $ch = ConfigHelper::getInstance();
     <link href="/stylesheets/base.css" media="all" rel="stylesheet" type="text/css">
 </head>
 <body>
-<?php
-$config = json_decode(file_get_contents('../application/configs/config.json'));
-//print_r($config->env);
-?>
+    <div class="container">
+        <?php
+        $config = json_decode(file_get_contents('../application/configs/config.json'));
+        //print_r($config->env);
+        ?>
 
-<?php include_once('../application/partials/form.phtml');?>
+        <?php include_once('../application/partials/form.phtml');?>
 
-<script type="text/javascript" src="/javascripts/libraries/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="/javascripts/libraries/jquery-1.7.2.min.js"></script>
 
-
+    </div>
 </body>
 </html>
 
