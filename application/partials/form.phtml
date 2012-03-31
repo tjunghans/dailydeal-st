@@ -1,0 +1,138 @@
+<!--a.       Anrede
+b.      Vorname
+c.       Nachname
+d.      Strasse
+e.      Hausnummer
+f.        PLZ
+g.       Ort
+h.      E-Mail-Adresse
+i.         Gutscheinnummer
+j.        Telefonnummer (optional aber empfohlen)-->
+
+<script type="text/javascript">
+ var RecaptchaOptions = {
+    lang : 'de',
+    theme : 'white'
+
+ };
+ </script>
+<form class="form-horizontal" method="post" action="/form-post.php">
+    <fieldset>
+        <legend>Legend text</legend>
+        <div class="control-group">
+            <label class="control-label" for="input00">Anrede</label>
+
+            <div class="controls">
+                <select id="input00" name="title">
+                    <option>Frau</option>
+                    <option>Herr</option>
+                </select>
+
+                
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="input01">Vorname</label>
+
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="input01" name="firstname">
+
+                
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="input03">Nachname</label>
+
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="input03" name="lastname">
+
+                
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="input04">Strasse</label>
+
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="input04" name="street">
+
+                
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="input05">Hausnummer</label>
+
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="input05" name="housenumber">
+
+                
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="input06">PLZ</label>
+
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="input06" name="postalcode">
+
+                
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="input07">Ort</label>
+
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="input07" name="city">
+
+                
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="input08">E-Mail-Adresse</label>
+
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="input08" name="email">
+
+        
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="input09">Gutscheinnummer</label>
+
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="input09" name="vouchernumber">
+
+                <p class="help-block">z.B. 123 456 77</p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="input10">Telefon</label>
+
+            <div class="controls">
+                <input type="text" class="input-xlarge" id="input10" name="telephone">
+
+                <p class="help-block">+41 12 345 67 89 (Optional)</p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">Sicherheit</label>
+            <?php
+          require_once('../application/libs/recaptchalib.php');
+          $publickey = "6LfqpM8SAAAAAOoYHvyOB75poh1oGk_0ceo0oMq-"; // you got this from the signup page
+          echo recaptcha_get_html($publickey);
+        ?>
+        </div>
+        <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Absenden</button>
+            <button class="btn">Abbrechen</button>
+          </div>
+    </fieldset>
+</form>

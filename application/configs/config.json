@@ -1,0 +1,9 @@
+{
+    "db" : {
+        "username" : "root",
+        "password" : ""
+    },
+
+    "env" : "dev",
+    "recaptcha_privatekey" : "6LfqpM8SAAAAAD5qQGu8_hKtbKWhTTamLf-keYT_"
+}
