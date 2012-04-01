@@ -3,6 +3,7 @@ require_once('../application/bootstrap.php');
 require_once('../application/libs/ConfigHelper.php');
 require_once('../application/libs/FormHelper.php');
 require_once('../application/libs/recaptchalib.php');
+require_once('../application/libs/Swift/lib/swift_required.php');
 $ch = ConfigHelper::getInstance();
 
 $privatekey = $ch->getConfig()->recaptcha_privatekey;
@@ -112,6 +113,37 @@ if ($ch->getEnvironmnent() != 'dev') {
         
         
         // E-mail csv file to st
+        $transport = Swift_SmtpTransport::newInstance($ch->getConfig()->smtp->server, $ch->getConfig()->smtp->port)
+          ->setUsername($ch->getConfig()->smtp->username)
+          ->setPassword($ch->getConfig()->smtp->password)
+          ;
+
+        $mailer = Swift_Mailer::newInstance($transport);
+
+        // Create the message
+        $message = Swift_Message::newInstance()
+
+          // Give the message a subject
+          ->setSubject('Dailydeal CSV')
+
+          // Set the From address with an associative array
+          ->setFrom(array($ch->getConfig()->dailymail->fromMail => $ch->getConfig()->dailymail->fromName))
+
+          // Set the To addresses with an associative array
+          ->setTo(array($ch->getConfig()->dailymail->toMail => $ch->getConfig()->dailymail->tjName))
+
+          // Give it a body
+          ->setBody('Here is the message itself')
+
+          // And optionally an alternative body
+          ->addPart('<q>Here is the message itself</q>', 'text/html')
+
+          // Optionally add any attachments
+          ->attach(Swift_Attachment::fromPath($csvFileName))
+
+            ->setCharset('utf-8');
+          ;
+        $numSent = $mailer->send($message);
 
         // Send confirmation to client
 

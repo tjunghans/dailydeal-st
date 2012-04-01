@@ -16,7 +16,7 @@
 	<td></td>
 	<td>http://local.dailydeal.silviotossi</td>
 </tr>
-    <tr>
+<tr>
 	<td>select</td>
 	<td>//select[@name='title']</td>
 	<td>index=1</td>
@@ -24,12 +24,12 @@
 <tr>
 	<td>type</td>
 	<td>//input[@name='firstname']</td>
-	<td>Max</td>
+	<td>Mäx</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>//input[@name='lastname']</td>
-	<td>Muster</td>
+	<td>Müster</td>
 </tr>
 <tr>
 	<td>type</td>

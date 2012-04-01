@@ -34,7 +34,7 @@
                                 $('input,select,textarea').filter('[name="' + data.invalidElements[i] + '"]').closest('div.control-group').addClass('error');
                             }
                         } else {
-                            location.href = '/confirmation.php';
+      //                      location.href = '/confirmation.php';
                         }
                     }
                 });
