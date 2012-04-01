@@ -28,12 +28,13 @@
                     'cache' : false,
                     'dataType' : 'json',
                     'success' : function (data) {
-                        if (data.responseType    === 'error') {
+                        
+                        if (data.responseType === 'error') {
                             for (var i = 0, len = data.invalidElements.length; i < len; i++) {
                                 $('input,select,textarea').filter('[name="' + data.invalidElements[i] + '"]').closest('div.control-group').addClass('error');
                             }
                         } else {
-                            that.$form[0].submit();
+                            location.href = '/confirmation.php';
                         }
                     }
                 });

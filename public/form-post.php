@@ -109,11 +109,28 @@ if ($ch->getEnvironmnent() != 'dev') {
         fputcsv($csvFileHandle, $csvFields);
 
         fseek($csvFileHandle, 0);
-        echo fread($csvFileHandle, filesize($csvFileName));
+        
         
         // E-mail csv file to st
 
         // Send confirmation to client
+
+        fclose($csvFileHandle);
+
+        $response = $csvFields;
+
+        // Convert to JSON
+        $json = json_encode($response);
+
+        // Set content type
+        header('Content-type: application/json');
+
+        // Prevent caching
+        header('Expires: 0');
+
+        // Send Response
+        print($json);
+        exit;
     }
 }
 ?>

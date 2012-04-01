@@ -31,6 +31,10 @@ class ConfigHelper {
         return $this->getConfig()->temppath;
     }
 
+    public function getPartialsPath() {
+        return $this->getConfig()->partialspath;
+    }
+
      public function increment()
     {
         return $this->count++;
