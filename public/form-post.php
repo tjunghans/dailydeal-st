@@ -1,4 +1,5 @@
 <?php
+require_once('../application/bootstrap.php');
 require_once('../application/libs/ConfigHelper.php');
 require_once('../application/libs/FormHelper.php');
 require_once('../application/libs/recaptchalib.php');
@@ -61,7 +62,7 @@ if ($ch->getEnvironmnent() != 'dev') {
         $inValidElements[] = 'email';
     }
 
-    if (!FormHelper::isValidEmail($_POST['vouchernumber'])) {
+    if (!FormHelper::isValidName($_POST['vouchernumber'])) {
         $isValidForm = false;
         $inValidElements[] = 'vouchernumber';
     }
@@ -84,6 +85,35 @@ if ($ch->getEnvironmnent() != 'dev') {
         // Send Response
         print($json);
         exit;
+    } else {
+        // Santize data
+        $csvFields = array(
+            FormHelper::clean($_POST['title']),
+            FormHelper::clean($_POST['firstname']),
+            FormHelper::clean($_POST['lastname']),
+            FormHelper::clean($_POST['street']),
+            FormHelper::clean($_POST['housenumber']),
+            FormHelper::clean($_POST['postalcode']),
+            FormHelper::clean($_POST['city']),
+            FormHelper::clean($_POST['email']),
+            FormHelper::clean($_POST['vouchernumber']),
+            FormHelper::clean($_POST['telephone']),
+            $date = date('d.m.Y H:i:s', time())
+        );
+
+        // Create csv file
+        $csvFileName = tempnam($ch->getTempPath(), 'csv');
+
+        // Write to csv file
+        $csvFileHandle = fopen($csvFileName, 'w+');
+        fputcsv($csvFileHandle, $csvFields);
+
+        fseek($csvFileHandle, 0);
+        echo fread($csvFileHandle, filesize($csvFileName));
+        
+        // E-mail csv file to st
+
+        // Send confirmation to client
     }
 }
 ?>

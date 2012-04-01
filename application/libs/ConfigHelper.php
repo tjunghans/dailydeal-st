@@ -27,6 +27,10 @@ class ConfigHelper {
         return $this->getConfig()->env;
     }
 
+    public function getTempPath() {
+        return $this->getConfig()->temppath;
+    }
+
      public function increment()
     {
         return $this->count++;

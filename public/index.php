@@ -1,4 +1,5 @@
 <?php
+require_once('../application/bootstrap.php');
 require_once('../application/libs/ConfigHelper.php');
 $ch = ConfigHelper::getInstance();
 ?><!DOCTYPE html>
@@ -24,8 +25,6 @@ $ch = ConfigHelper::getInstance();
         <script type="text/javascript" src="/javascripts/libraries/terrific-1.1.0.min.js"></script>
         <script type="text/javascript" src="/javascripts/project/Tc.bootstrap.js"></script>
         <script type="text/javascript" src="/javascripts/project/Tc.Module.Form.js"></script>
-
-
 
     </div>
 </body>
