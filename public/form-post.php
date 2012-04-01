@@ -1,10 +1,32 @@
 <?php
+session_start();
 require_once('../application/bootstrap.php');
 require_once('../application/libs/ConfigHelper.php');
 require_once('../application/libs/FormHelper.php');
 require_once('../application/libs/recaptchalib.php');
 require_once('../application/libs/Swift/lib/swift_required.php');
 $ch = ConfigHelper::getInstance();
+
+// Sessionid and form input should be the same
+if (session_id() != $_POST['sess']) {
+    $response = array(
+            "responseType" => "error",
+            "responseText" => "invalid session"
+        );
+
+    // Convert to JSON
+    $json = json_encode($response);
+
+    // Set content type
+    header('Content-type: application/json');
+
+    // Prevent caching
+    header('Expires: 0');
+
+    // Send Response
+    print($json);
+    exit;
+}
 
 $privatekey = $ch->getConfig()->recaptcha_privatekey;
 
@@ -71,6 +93,7 @@ if ($ch->getEnvironmnent() != 'dev') {
     If ($isValidForm == false) {
         $response = array(
             "responseType" => "error",
+            "responseText" => "Invalid elements",
             "invalidElements" => $inValidElements
         );
 
@@ -104,12 +127,11 @@ if ($ch->getEnvironmnent() != 'dev') {
 
         // Create csv file
         $csvFileName = tempnam($ch->getTempPath(), 'csv');
-
         // Write to csv file
         $csvFileHandle = fopen($csvFileName, 'w+');
         fputcsv($csvFileHandle, $csvFields);
-
         fseek($csvFileHandle, 0);
+        fclose($csvFileHandle);
         
         
         // E-mail csv file to st
@@ -133,7 +155,7 @@ if ($ch->getEnvironmnent() != 'dev') {
           ->setTo(array($ch->getConfig()->dailymail->toMail => $ch->getConfig()->dailymail->tjName))
 
           // Give it a body
-          ->setBody('Here is the message itself')
+          ->setBody('Das DailyDeal-Formular wurde ausgefüllt.')
 
           // And optionally an alternative body
           ->addPart('<q>Here is the message itself</q>', 'text/html')
@@ -143,13 +165,17 @@ if ($ch->getEnvironmnent() != 'dev') {
 
             ->setCharset('utf-8');
           ;
-        $numSent = $mailer->send($message);
+   //     $numSent = $mailer->send($message);
 
-        // Send confirmation to client
+        $response = array(
+                    "responseType" => "success",
+                    "responseText" => "Success",
+                    "email" => $numSent,
+                    "post" => $csvFields
+                );
 
-        fclose($csvFileHandle);
-
-        $response = $csvFields;
+        session_start();
+        $_SESSION['post'] = $csvFields;
 
         // Convert to JSON
         $json = json_encode($response);

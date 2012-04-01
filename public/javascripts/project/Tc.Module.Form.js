@@ -29,12 +29,14 @@
                     'dataType' : 'json',
                     'success' : function (data) {
                         
-                        if (data.responseType === 'error') {
+                        if (data.responseType === 'error' && data.invalidElements) {
                             for (var i = 0, len = data.invalidElements.length; i < len; i++) {
                                 $('input,select,textarea').filter('[name="' + data.invalidElements[i] + '"]').closest('div.control-group').addClass('error');
                             }
+                        } else if (data.responseType === 'error') {
+                            alert(data.responseText);
                         } else {
-      //                      location.href = '/confirmation.php';
+                            location.href = '/confirmation.php';
                         }
                     }
                 });

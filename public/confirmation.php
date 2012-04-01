@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('../application/bootstrap.php');
 require_once('../application/libs/ConfigHelper.php');
 $ch = ConfigHelper::getInstance();
@@ -15,8 +16,8 @@ $ch = ConfigHelper::getInstance();
 <body>
     <div class="container">
         <?php
-        $config = json_decode(file_get_contents('../application/configs/config.json'));
-        //print_r($config->env);
+
+        print_r($_SESSION['post']);
         ?>
         <h1>Vielen Dank!</h1>
         <p>Sie werden in Kürze eine E-Mail von Silvio Tossi erhalten.</p>
