@@ -67,7 +67,23 @@ if ($ch->getEnvironmnent() != 'dev') {
     }
 
     If ($isValidForm == false) {
-        
+        $response = array(
+            "responseType" => "error",
+            "invalidElements" => $inValidElements
+        );
+
+        // Convert to JSON
+        $json = json_encode($response);
+
+        // Set content type
+        header('Content-type: application/json');
+
+        // Prevent caching
+        header('Expires: 0');
+
+        // Send Response
+        print($json);
+        exit;
     }
 }
 ?>
