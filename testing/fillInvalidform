@@ -4,12 +4,12 @@
     <head profile="http://selenium-ide.openqa.org/profiles/test-case">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="selenium.base" href="http://local.dailydeal.silviotossi" />
-    <title>fillform</title>
+    <title>fillInvalidform</title>
     </head>
     <body>
     <table cellpadding="1" cellspacing="1" border="1">
     <thead>
-    <tr><td rowspan="1" colspan="3">fillform</td></tr>
+    <tr><td rowspan="1" colspan="3">fillInvalidform</td></tr>
     </thead><tbody>
     <tr>
 	<td>open</td>
@@ -24,22 +24,22 @@
 <tr>
 	<td>type</td>
 	<td>//input[@name='firstname']</td>
-	<td>Max</td>
+	<td></td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>//input[@name='lastname']</td>
-	<td>Muster</td>
+	<td> </td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>//input[@name='street']</td>
-	<td>Bahnhofstrasse</td>
+	<td>-----</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>//input[@name='housenumber']</td>
-	<td>1</td>
+	<td>abbe</td>
 </tr>
 <tr>
 	<td>type</td>
@@ -49,22 +49,22 @@
 <tr>
 	<td>type</td>
 	<td>//input[@name='city']</td>
-	<td>Schaffhausen</td>
+	<td>   </td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>//input[@name='email']</td>
-	<td>max.muster@example.com</td>
+	<td>max.muster@example</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>//input[@name='vouchernumber']</td>
-	<td>1234 5678 9012</td>
+	<td></td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>//input[@name='telephone']</td>
-	<td>+41 12 345 67 89</td>
+	<td>+41 12 ascd345 67 89</td>
 </tr>
 <tr>
 	<td>click</td>

@@ -22,7 +22,7 @@ j.        Telefonnummer (optional aber empfohlen)-->
         <div class="control-group">
             <label class="control-label" for="input00">Anrede</label>
 
-            <div class="controls">
+            <div class="controls" autofocus>
                 <select id="input00" name="title">
                     <option>Frau</option>
                     <option>Herr</option>
@@ -36,7 +36,7 @@ j.        Telefonnummer (optional aber empfohlen)-->
             <label class="control-label" for="input01">Vorname</label>
 
             <div class="controls">
-                <input type="text" class="input-xlarge" id="input01" name="firstname" autofocus>
+                <input type="text" class="input-xlarge" id="input01" name="firstname" required>
 
                 
             </div>
@@ -46,7 +46,7 @@ j.        Telefonnummer (optional aber empfohlen)-->
             <label class="control-label" for="input03">Nachname</label>
 
             <div class="controls">
-                <input type="text" class="input-xlarge" id="input03" name="lastname">
+                <input type="text" class="input-xlarge" id="input03" name="lastname" required>
 
                 
             </div>
@@ -56,7 +56,7 @@ j.        Telefonnummer (optional aber empfohlen)-->
             <label class="control-label" for="input04">Strasse</label>
 
             <div class="controls">
-                <input type="text" class="input-xlarge" id="input04" name="street">
+                <input type="text" class="input-xlarge" id="input04" name="street" required>
 
                 
             </div>
@@ -66,7 +66,7 @@ j.        Telefonnummer (optional aber empfohlen)-->
             <label class="control-label" for="input05">Hausnummer</label>
 
             <div class="controls">
-                <input type="text" class="input-xlarge" id="input05" name="housenumber">
+                <input type="text" class="input-xlarge" id="input05" name="housenumber" required>
 
                 
             </div>
@@ -76,7 +76,7 @@ j.        Telefonnummer (optional aber empfohlen)-->
             <label class="control-label" for="input06">PLZ</label>
 
             <div class="controls">
-                <input type="text" class="input-xlarge" id="input06" name="postalcode">
+                <input type="text" class="input-xlarge" id="input06" name="postalcode" required>
 
                 
             </div>
@@ -86,7 +86,7 @@ j.        Telefonnummer (optional aber empfohlen)-->
             <label class="control-label" for="input07">Ort</label>
 
             <div class="controls">
-                <input type="text" class="input-xlarge" id="input07" name="city">
+                <input type="text" class="input-xlarge" id="input07" name="city" required>
 
                 
             </div>
@@ -96,7 +96,7 @@ j.        Telefonnummer (optional aber empfohlen)-->
             <label class="control-label" for="input08">E-Mail-Adresse</label>
 
             <div class="controls">
-                <input type="email" class="input-xlarge" id="input08" name="email">
+                <input type="email" class="input-xlarge" id="input08" name="email" required>
 
         
             </div>
@@ -106,7 +106,7 @@ j.        Telefonnummer (optional aber empfohlen)-->
             <label class="control-label" for="input09">Gutscheinnummer</label>
 
             <div class="controls">
-                <input type="text" class="input-xlarge" id="input09" name="vouchernumber">
+                <input type="text" class="input-xlarge" id="input09" name="vouchernumber" required>
 
                 <p class="help-block">z.B. 123 456 77</p>
             </div>
@@ -121,7 +121,7 @@ j.        Telefonnummer (optional aber empfohlen)-->
                 <p class="help-block">+41 12 345 67 89 (Optional)</p>
             </div>
         </div>
-
+<?php if ($ch->getEnvironmnent() != 'dev') {?>
         <div class="control-group">
             <label class="control-label">Sicherheit</label>
             <?php
@@ -130,6 +130,7 @@ j.        Telefonnummer (optional aber empfohlen)-->
           echo recaptcha_get_html($publickey);
         ?>
         </div>
+<?php } ?>
         <div class="form-actions">
             <button class="btn btn-primary" type="submit">Absenden</button>
             <button class="btn">Abbrechen</button>

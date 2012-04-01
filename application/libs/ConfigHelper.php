@@ -23,6 +23,10 @@ class ConfigHelper {
         return self::$config;
     }
 
+    public function getEnvironmnent() {
+        return $this->getConfig()->env;
+    }
+
      public function increment()
     {
         return $this->count++;
