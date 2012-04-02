@@ -120,7 +120,43 @@ if ($ch->getEnvironmnent() != 'dev') {
 
         $mailer = Swift_Mailer::newInstance($transport);
 
-        // Create the message
+        // $title and $lastname are used by partial include
+        $title = $csvFields[0];
+        $lastname = $csvFields[2];
+        ob_start ();
+        require('../application/partials/emailbody-client.phtml');
+        $body = ob_get_contents();
+        ob_end_clean();
+
+        // Client E-Mail
+        $message = Swift_Message::newInstance()
+
+          // Give the message a subject
+          ->setSubject('Bestätigung DailyDeal ST')
+
+          // Set the From address with an associative array
+          ->setFrom(array($ch->getConfig()->dailymail->fromMail => $ch->getConfig()->dailymail->fromName))
+
+          // Set the To addressesiative array with an assoc
+          ->setTo(array($csvFields[7] => $csvFields[1] . ' ' . $csvFields[2]))
+
+          // Give it a body
+          ->setBody($body)
+
+          // And optionally an alternative body
+          ->addPart('<q>' . $body . '</q>', 'text/html')
+
+            ->setCharset('utf-8');
+          ;
+        $numSent = $mailer->send($message);
+
+
+        // ST E-Mail
+        ob_start ();
+        require('../application/partials/emailbody-st.phtml');
+        $body = ob_get_contents();
+        ob_end_clean();
+        
         $message = Swift_Message::newInstance()
 
           // Give the message a subject
@@ -130,13 +166,13 @@ if ($ch->getEnvironmnent() != 'dev') {
           ->setFrom(array($ch->getConfig()->dailymail->fromMail => $ch->getConfig()->dailymail->fromName))
 
           // Set the To addresses with an associative array
-          ->setTo(array($ch->getConfig()->dailymail->toMail => $ch->getConfig()->dailymail->tjName))
+          ->setTo(array($ch->getConfig()->dailymail->toMail => $ch->getConfig()->dailymail->toName))
 
           // Give it a body
-          ->setBody('Das DailyDeal-Formular wurde ausgefüllt.')
+          ->setBody($body)
 
           // And optionally an alternative body
-          ->addPart('<q>Here is the message itself</q>', 'text/html')
+          ->addPart('<q>' . $body . '</q>', 'text/html')
 
           // Optionally add any attachments
           ->attach(Swift_Attachment::fromPath($csvFileName))
@@ -145,9 +181,8 @@ if ($ch->getEnvironmnent() != 'dev') {
           ;
         $numSent = $mailer->send($message);
 
-
-
         session_start();
+        // Store date in session so it can be used on confirmation page
         $_SESSION['post'] = $csvFields;
 
         $response = array(

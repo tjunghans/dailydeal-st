@@ -4,12 +4,12 @@
     <head profile="http://selenium-ide.openqa.org/profiles/test-case">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="selenium.base" href="http://local.dailydeal.silviotossi" />
-    <title>fillform</title>
+    <title>fillformfemale</title>
     </head>
     <body>
     <table cellpadding="1" cellspacing="1" border="1">
     <thead>
-    <tr><td rowspan="1" colspan="3">fillform</td></tr>
+    <tr><td rowspan="1" colspan="3">fillformfemale</td></tr>
     </thead><tbody>
     <tr>
 	<td>open</td>
@@ -19,32 +19,32 @@
 <tr>
 	<td>select</td>
 	<td>//select[@name='title']</td>
-	<td>index=1</td>
+	<td>index=0</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>//input[@name='firstname']</td>
-	<td>Mäx</td>
+	<td>Maxi</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>//input[@name='lastname']</td>
-	<td>Müster</td>
+	<td>Lange</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>//input[@name='street']</td>
-	<td>Bahnhofstrasse</td>
+	<td>Munotweg</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>//input[@name='housenumber']</td>
-	<td>1</td>
+	<td>5</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>//input[@name='postalcode']</td>
-	<td>8200</td>
+	<td>8201</td>
 </tr>
 <tr>
 	<td>type</td>
