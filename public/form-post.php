@@ -10,22 +10,11 @@ $ch = ConfigHelper::getInstance();
 // Sessionid and form input should be the same
 if (session_id() != $_POST['sess']) {
     $response = array(
-            "responseType" => "error",
-            "responseText" => "invalid session"
-        );
+        "responseType" => "error",
+        "responseText" => "invalid session"
+    );
 
-    // Convert to JSON
-    $json = json_encode($response);
-
-    // Set content type
-    header('Content-type: application/json');
-
-    // Prevent caching
-    header('Expires: 0');
-
-    // Send Response
-    print($json);
-    exit;
+    FormHelper::json_response($response);
 }
 
 $privatekey = $ch->getConfig()->recaptcha_privatekey;
@@ -97,18 +86,7 @@ if ($ch->getEnvironmnent() != 'dev') {
             "invalidElements" => $inValidElements
         );
 
-        // Convert to JSON
-        $json = json_encode($response);
-
-        // Set content type
-        header('Content-type: application/json');
-
-        // Prevent caching
-        header('Expires: 0');
-
-        // Send Response
-        print($json);
-        exit;
+        FormHelper::json_response($response);
     } else {
         // Santize data
         $csvFields = array(
@@ -165,30 +143,21 @@ if ($ch->getEnvironmnent() != 'dev') {
 
             ->setCharset('utf-8');
           ;
-   //     $numSent = $mailer->send($message);
+        $numSent = $mailer->send($message);
 
-        $response = array(
-                    "responseType" => "success",
-                    "responseText" => "Success",
-                    "email" => $numSent,
-                    "post" => $csvFields
-                );
+
 
         session_start();
         $_SESSION['post'] = $csvFields;
 
-        // Convert to JSON
-        $json = json_encode($response);
+        $response = array(
+            "responseType" => "success",
+            "responseText" => "Success",
+            "email" => $numSent,
+            "post" => $csvFields
+        );
 
-        // Set content type
-        header('Content-type: application/json');
-
-        // Prevent caching
-        header('Expires: 0');
-
-        // Send Response
-        print($json);
-        exit;
+        FormHelper::json_response($response);
     }
 }
 ?>

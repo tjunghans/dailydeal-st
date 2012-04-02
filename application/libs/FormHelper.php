@@ -15,4 +15,19 @@ class FormHelper {
         $text = htmlspecialchars($text, ENT_QUOTES);
         return ($text);
     }
+
+    public static function json_response($response) {
+        // Convert to JSON
+        $json = json_encode($response);
+
+        // Set content type
+        header('Content-type: application/json');
+
+        // Prevent caching
+        header('Expires: 0');
+
+        // Send Response
+        print($json);
+        exit;
+    }
 }

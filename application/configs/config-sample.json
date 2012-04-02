@@ -1,0 +1,27 @@
+{
+    "db" : {
+        "username" : "",
+        "password" : ""
+    },
+    "labels" : {
+        "title" : ""
+    },
+
+    "env" : "dev",
+    "partialspath" : "../application/partials",
+    "temppath" : "../application/temp",
+    "recaptcha_publickey" : "",
+    "recaptcha_privatekey" : "",
+    "smtp" : {
+        "server" : "",
+        "port" : 25,
+        "username" : "",
+        "password" : " "
+    },
+    "dailymail" : {
+        "fromMail" : "",
+        "fromName" : "",
+        "toMail" : "",
+        "toName" : ""
+    }
+}
