@@ -59,7 +59,6 @@
 
             that.$ctx.on('keyup', 'div.error input, div.error textarea', function (e) {
   
-
                 var $this = $(this),
                     elemName = $this.attr('name');
 
