@@ -37,10 +37,9 @@
                     'cache' : false,
                     'dataType' : 'json',
                     'success' : function (data) {
-
                         if (data.responseType === 'error' && data.invalidElements) {
                             for (var i = 0, len = data.invalidElements.length; i < len; i++) {
-                                $('input,select,textarea').filter('[name="' + data.invalidElements[i] + '"]').closest('div.control-group').addClass('error');
+                                $('input,textarea').filter('[name="' + data.invalidElements[i] + '"]').closest('div.control-group').addClass('error');
                             }
                         } else if (data.responseType === 'error') {
                             alert(data.responseText);
@@ -57,7 +56,29 @@
             };
 
             that.$ctx.on('submit', 'form', $.proxy(submitHandler, this));
-            
+
+            that.$ctx.on('keyup', 'div.error input, div.error textarea', function (e) {
+  
+
+                var $this = $(this),
+                    elemName = $this.attr('name');
+
+                $.ajax({
+                    'type' : that.$form.attr('method'),
+                    'url' : that.$form.attr('action'),
+                    'data' : 'sendform=false&' + that.$form.serialize(),
+                    'cache' : false,
+                    'dataType' : 'json',
+                    'success' : function (data) {
+                        if (data.responseType === 'error' && data.invalidElements) {
+                            if ($.inArray(elemName, data.invalidElements) === -1) {
+                                $this.closest('div.error').removeClass('error');
+                            }
+                        } 
+                    }
+                });
+
+            });
 
             callback();
         }

@@ -5,11 +5,11 @@
     theme : 'white'
  };
  </script>
-<form class="form-horizontal" method="post" action="/form-post.php">
+<form class="form-horizontal" method="post" action="/form-post.php" novalidate>
     <fieldset>
         <legend>Lösen Sie Ihren Silvio Tossi Gutschein-Code ein.</legend>
         <div class="control-group">
-            <label class="control-label" for="input00">Anrede</label>
+            <label class="control-label" for="input00">Anrede*</label>
 
             <div class="controls" autofocus>
                 <select id="input00" name="title">
@@ -22,7 +22,7 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="input01">Vorname</label>
+            <label class="control-label" for="input01">Vorname*</label>
 
             <div class="controls">
                 <input type="text" class="input-xlarge" id="input01" name="firstname" required>
@@ -32,7 +32,7 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="input03">Nachname</label>
+            <label class="control-label" for="input03">Nachname*</label>
 
             <div class="controls">
                 <input type="text" class="input-xlarge" id="input03" name="lastname" required>
@@ -42,7 +42,7 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="input04">Strasse</label>
+            <label class="control-label" for="input04">Strasse*</label>
 
             <div class="controls">
                 <input type="text" class="input-xlarge" id="input04" name="street" required>
@@ -52,7 +52,7 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="input05">Hausnummer</label>
+            <label class="control-label" for="input05">Hausnummer*</label>
 
             <div class="controls">
                 <input type="text" class="input-xlarge" id="input05" name="housenumber" required>
@@ -62,7 +62,7 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="input06">PLZ</label>
+            <label class="control-label" for="input06">PLZ*</label>
 
             <div class="controls">
                 <input type="text" class="input-xlarge" id="input06" name="postalcode" required>
@@ -72,7 +72,7 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="input07">Ort</label>
+            <label class="control-label" for="input07">Ort*</label>
 
             <div class="controls">
                 <input type="text" class="input-xlarge" id="input07" name="city" required>
@@ -80,7 +80,7 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="input08">E-Mail-Adresse</label>
+            <label class="control-label" for="input08">E-Mail-Adresse*</label>
 
             <div class="controls">
                 <input type="email" class="input-xlarge" id="input08" name="email" required>
@@ -90,11 +90,11 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="input09">Gutscheinnummer</label>
+            <label class="control-label" for="input09">Gutscheinnummer*</label>
 
             <div class="controls">
                 <input type="text" class="input-xlarge" id="input09" name="vouchernumber" required>
-                <span class="help-inline">Please correct the error</span>
+                <span class="help-inline">Ungültige Gutscheinnummer</span>
             </div>
         </div>
 

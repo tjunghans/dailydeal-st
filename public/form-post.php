@@ -79,7 +79,9 @@ if ($ch->getEnvironmnent() != 'dev') {
         $inValidElements[] = 'vouchernumber';
     }
 
-    If ($isValidForm == false) {
+    // On keyup validation, the field "sendform" is sent as well. The form should only be posted if all fields are valid
+    // AND the user clicks on submit.
+    If ($isValidForm == false || isset($_POST['sendform']) && $_POST['sendform'] == "false") {
         $response = array(
             "responseType" => "error",
             "responseText" => "Invalid elements",
