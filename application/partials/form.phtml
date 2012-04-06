@@ -7,7 +7,7 @@
  </script>
 <form class="form-horizontal" method="post" action="/form-post.php" novalidate>
     <fieldset>
-        <legend>Lösen Sie Ihren Silvio Tossi Gutschein-Code ein.</legend>
+        <legend>Lösen Sie Ihren Silvio Tossi Gutschein-Code ein</legend>
         <div class="control-group">
             <label class="control-label" for="input00">Anrede*</label>
 
@@ -26,7 +26,7 @@
 
             <div class="controls">
                 <input type="text" class="input-xlarge" id="input01" name="firstname" required>
-
+                <span class="help-inline">Bitte geben Sie Ihren Vornamen ein.</span>
                 
             </div>
         </div>
@@ -36,7 +36,7 @@
 
             <div class="controls">
                 <input type="text" class="input-xlarge" id="input03" name="lastname" required>
-
+                <span class="help-inline">Bitte geben Sie Ihren Nachnamen ein.</span>
                 
             </div>
         </div>
@@ -47,7 +47,7 @@
             <div class="controls">
                 <input type="text" class="input-xlarge" id="input04" name="street" required>
 
-                
+                <span class="help-inline">Bitte geben Sie Ihre Strasse ein.</span>
             </div>
         </div>
 
@@ -57,7 +57,7 @@
             <div class="controls">
                 <input type="text" class="input-xlarge" id="input05" name="housenumber" required>
 
-                
+                <span class="help-inline">Bitte geben Sie Ihre Hausnummer ein.</span>
             </div>
         </div>
 
@@ -67,7 +67,7 @@
             <div class="controls">
                 <input type="text" class="input-xlarge" id="input06" name="postalcode" required>
 
-                
+                <span class="help-inline">Bitte geben Sie Ihre Postleitzahl ein.</span>
             </div>
         </div>
 
@@ -76,6 +76,7 @@
 
             <div class="controls">
                 <input type="text" class="input-xlarge" id="input07" name="city" required>
+                <span class="help-inline">Bitte geben Sie Ihre Stadt ein.</span>
             </div>
         </div>
 
@@ -85,7 +86,7 @@
             <div class="controls">
                 <input type="email" class="input-xlarge" id="input08" name="email" required>
 
-        
+                <span class="help-inline">Bitte geben Sie Ihre E-Mail-Adresse ein.</span>
             </div>
         </div>
 
@@ -94,7 +95,7 @@
 
             <div class="controls">
                 <input type="text" class="input-xlarge" id="input09" name="vouchernumber" required>
-                <span class="help-inline">Ungültige Gutscheinnummer</span>
+                <span class="help-inline">Bitte geben Sie eine gültige Gutscheinnummer ein.</span>
             </div>
         </div>
 
@@ -115,6 +116,7 @@
         ?>
         </div>
 <?php } ?>
+
         <div class="form-actions">
             <button class="btn btn-primary" type="submit">Absenden</button>
             <button class="btn" type="reset">Abbrechen</button>
