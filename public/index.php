@@ -14,8 +14,19 @@ require_once('../application/bootstrap.php');
 </head>
 <body>
     <div class="container">
-        <?php include_once($ch->getPartialsPath() . '/form.phtml');?>
+        <header class="header">
+            <a href="http://www.silviotossi.com" title="www.silviotossi.com">
+                <img src="/images/st-banner.jpg" width="920" height="130" alt="Silvio Tossi"/>
+            </a>
+        </header>
+        <div class="row">
+            <div class="span12">
 
+                <?php include_once($ch->getPartialsPath() . '/form.phtml');?>
+
+            </div>
+        </div>
+        <?php include_once($ch->getPartialsPath() . '/footer.phtml');?>
         <script type="text/javascript" src="/javascripts/libraries/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="/javascripts/libraries/terrific-1.1.0.min.js"></script>
         <script type="text/javascript" src="/javascripts/project/Tc.bootstrap.js"></script>

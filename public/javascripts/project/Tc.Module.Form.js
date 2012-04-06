@@ -16,10 +16,19 @@
 
             that.$form = $('form', that.$ctx);
 
-            var submitButtonHandler = function (e) {
-                e.preventDefault();
+            var submitInProgress = false;
 
+            var submitHandler = function (e) {
+                e.preventDefault();
                 var that = this;
+
+                if (submitInProgress === true) {
+                    return false;
+                } else {
+                    submitInProgress = true;
+                    $('button[type="submit"]', that.$ctx).addClass('disabled');
+                    $('img.ajaxLoader', that.$ctx).addClass('ajaxLoaderProgress');
+                }
 
                 $.ajax({
                     'type' : that.$form.attr('method'),
@@ -28,7 +37,7 @@
                     'cache' : false,
                     'dataType' : 'json',
                     'success' : function (data) {
-                        
+
                         if (data.responseType === 'error' && data.invalidElements) {
                             for (var i = 0, len = data.invalidElements.length; i < len; i++) {
                                 $('input,select,textarea').filter('[name="' + data.invalidElements[i] + '"]').closest('div.control-group').addClass('error');
@@ -38,17 +47,17 @@
                         } else {
                             location.href = '/confirmation.php';
                         }
+                    },
+                    'complete' : function () {
+                        submitInProgress = false;
+                        $('button[type="submit"]', that.$ctx).removeClass('disabled');
+                        $('img.ajaxLoader', that.$ctx).removeClass('ajaxLoaderProgress');
                     }
                 });
-                
             };
 
-            var submitHandler = function (e) {
-                e.preventDefault();
-            };
-
-            that.$ctx.on('submit', 'form', submitHandler, this);
-            that.$ctx.on('click', 'button[type="submit"]', $.proxy(submitButtonHandler, this));
+            that.$ctx.on('submit', 'form', $.proxy(submitHandler, this));
+            
 
             callback();
         }

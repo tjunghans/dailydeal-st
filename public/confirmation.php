@@ -15,13 +15,53 @@ $ch = ConfigHelper::getInstance();
 </head>
 <body>
     <div class="container">
-        <?php
+        <header class="header">
 
-        print_r($_SESSION['post']);
-        ?>
-        <h1>Vielen Dank!</h1>
-        <p>Sie werden in Kürze eine E-Mail von Silvio Tossi erhalten.</p>
+                <img src="/images/st-banner.jpg" width="920" height="130" alt="Silvio Tossi"/>
 
+        </header>
+        <div class="row">
+            <div class="span12">
+                <section class="content">
+                    <h1>Vielen Dank!</h1>
+                    <p>Sie werden in Kürze eine E-Mail von Silvio Tossi erhalten.</p>
+                    <p>Ihre Angaben:<br/>
+
+                    <?php
+                    $sess_post = $_SESSION['post'];
+                    $output = array(
+                            "Anrede" => $sess_post[0],
+                            "Vorname" => $sess_post[1],
+                            "Nachname" => $sess_post[2],
+                            "Strasse" => $sess_post[3],
+                            "Hausnummer" => $sess_post[4],
+                            "PLZ" => $sess_post[5],
+                            "Ort" => $sess_post[6],
+                            "E-Mail-Adresse" => $sess_post[7],
+                            "Gutscheinnummer" => $sess_post[8],
+                            "Telefon" => $sess_post[9]
+                        );
+                    ?>
+
+                    <dl class="dl-horizontal">
+                    <?php
+                    foreach($output as $dt => $dd) {
+                    ?>
+                        <dt><?php echo $dt;?></dt><dd><?php echo $dd;?></dd>
+                     <?php
+                    }
+                    ?>
+
+                    </dl>
+  
+                    </p>
+                    <p>
+                        <a href="/">Zurück zum Formular</a> | <a href="http://www.silviotossi.com">Zu Silvio Tossi</a>
+                    </p>
+                </section>
+            </div>
+        </div>
+        <?php include_once($ch->getPartialsPath() . '/footer.phtml');?>
         <script type="text/javascript" src="/javascripts/libraries/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="/javascripts/libraries/terrific-1.1.0.min.js"></script>
         <script type="text/javascript" src="/javascripts/project/Tc.bootstrap.js"></script>

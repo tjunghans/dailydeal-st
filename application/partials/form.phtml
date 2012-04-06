@@ -1,19 +1,8 @@
-<!--a.       Anrede
-b.      Vorname
-c.       Nachname
-d.      Strasse
-e.      Hausnummer
-f.        PLZ
-g.       Ort
-h.      E-Mail-Adresse
-i.         Gutscheinnummer
-j.        Telefonnummer (optional aber empfohlen)-->
 <div class="mod modForm">
 <script type="text/javascript">
  var RecaptchaOptions = {
     lang : 'de',
     theme : 'white'
-
  };
  </script>
 <form class="form-horizontal" method="post" action="/form-post.php">
@@ -87,8 +76,6 @@ j.        Telefonnummer (optional aber empfohlen)-->
 
             <div class="controls">
                 <input type="text" class="input-xlarge" id="input07" name="city" required>
-
-                
             </div>
         </div>
 
@@ -107,8 +94,7 @@ j.        Telefonnummer (optional aber empfohlen)-->
 
             <div class="controls">
                 <input type="text" class="input-xlarge" id="input09" name="vouchernumber" required>
-
-                <p class="help-block">z.B. 123 456 77</p>
+                <span class="help-inline">Please correct the error</span>
             </div>
         </div>
 
@@ -116,9 +102,7 @@ j.        Telefonnummer (optional aber empfohlen)-->
             <label class="control-label" for="input10">Telefon</label>
 
             <div class="controls">
-                <input type="tel" class="input-xlarge" id="input10" name="telephone">
-
-                <p class="help-block">+41 12 345 67 89 (Optional)</p>
+                <input type="tel" class="input-xlarge" id="input10" name="telephone">   
             </div>
         </div>
 <?php if ($ch->getEnvironmnent() != 'dev') {?>
@@ -134,6 +118,7 @@ j.        Telefonnummer (optional aber empfohlen)-->
         <div class="form-actions">
             <button class="btn btn-primary" type="submit">Absenden</button>
             <button class="btn" type="reset">Abbrechen</button>
+            <img class="ajaxLoader" src="/images/ajax-loader.gif" width="16" height="16" />
           </div>
     </fieldset>
     <input type="hidden" name="sess" value="<?php echo session_id();?>">

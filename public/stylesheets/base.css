@@ -1,0 +1,60 @@
+body {
+    background: url(/images/st-birds.jpg);
+    /*background:  url(/images/Twitter_Hintergrund_Tasche_rot.jpg) no-repeat;*/
+}
+
+.container {
+    background-color: #fff;
+}
+
+.header {
+    padding:  10px 10px 0;
+}
+
+.footer .footerLeftInner {
+    padding-left: 10px;
+}
+
+.footer .footerRightInner {
+    padding-right: 10px;
+    text-align: right;
+}
+
+.footer a {
+    color: #000;
+    font-family: Tahoma,arial,sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #B56F7E;
+}
+
+.modForm {
+    overflow: hidden;
+}
+
+.modForm legend {
+    padding:  0 10px;
+}
+
+.modForm .help-inline {
+    display: none;
+}
+
+.modForm .error .help-inline {
+    display: inline;
+}
+
+.modForm .ajaxLoader {
+    display: none;
+}
+
+.modForm .ajaxLoaderProgress {
+    display: inline;
+}
+
+.content {
+    padding: 0 10px;
+}

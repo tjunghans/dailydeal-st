@@ -74,7 +74,7 @@ if ($ch->getEnvironmnent() != 'dev') {
         $inValidElements[] = 'email';
     }
 
-    if (!FormHelper::isValidName($_POST['vouchernumber'])) {
+    if (!FormHelper::isValidVoucherCode($_POST['vouchernumber'])) {
         $isValidForm = false;
         $inValidElements[] = 'vouchernumber';
     }
@@ -88,6 +88,7 @@ if ($ch->getEnvironmnent() != 'dev') {
 
         FormHelper::json_response($response);
     } else {
+        
         // Santize data
         $csvFields = array(
             FormHelper::clean($_POST['title']),
