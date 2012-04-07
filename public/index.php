@@ -14,11 +14,7 @@ require_once('../application/bootstrap.php');
 </head>
 <body>
     <div class="container">
-        <header class="header">
-            <a href="http://www.silviotossi.com" title="www.silviotossi.com">
-                <img src="/images/st-banner.jpg" width="920" height="130" alt="Silvio Tossi"/>
-            </a>
-        </header>
+        <?php include_once($ch->getPartialsPath() . '/header.phtml');?>
         <div class="row">
             <div class="span12">
 

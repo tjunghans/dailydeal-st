@@ -14,5 +14,11 @@ class TestOfFormHelper extends UnitTestCase {
         $this->assertTrue(FormHelper::isValidVoucherCode('6-1ö267-ÄWY'));
         $this->assertFalse(FormHelper::isValidVoucherCode('6-1ö267.ÄWY'));
     }
+
+    function testIsValidName() {
+        $this->assertTrue(FormHelper::isValidName('T'));
+        $this->assertFalse(FormHelper::isValidName(''));
+        $this->assertFalse(FormHelper::isValidName(null));
+    }
 }
 ?>

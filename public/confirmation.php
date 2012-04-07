@@ -3,6 +3,12 @@ session_start();
 require_once('../application/bootstrap.php');
 require_once('../application/libs/ConfigHelper.php');
 $ch = ConfigHelper::getInstance();
+
+if (!isset($_SESSION['post'])) {
+    header('location: index.php');
+    exit;
+}
+
 ?><!DOCTYPE html>
 <html>
 <head>
@@ -15,11 +21,7 @@ $ch = ConfigHelper::getInstance();
 </head>
 <body>
     <div class="container">
-        <header class="header">
-
-                <img src="/images/st-banner.jpg" width="920" height="130" alt="Silvio Tossi"/>
-
-        </header>
+        <?php include_once($ch->getPartialsPath() . '/header.phtml');?>
         <div class="row">
             <div class="span12">
                 <section class="content">
@@ -67,5 +69,10 @@ $ch = ConfigHelper::getInstance();
         <script type="text/javascript" src="/javascripts/project/Tc.bootstrap.js"></script>
     </div>
 </body>
-</html>
+</html><?php
+// Clear session
+session_unset();
+session_destroy();
+session_write_close();
+?>
 

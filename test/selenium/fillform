@@ -72,6 +72,16 @@
 	<td></td>
 </tr>
 <tr>
+	<td>pause</td>
+	<td>1000</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementNotPresent</td>
+	<td>//div[@class='control-group error']</td>
+	<td></td>
+</tr>
+<tr>
 	<td>waitForPageToLoad</td>
 	<td>7000</td>
 	<td>7000</td>
