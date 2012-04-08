@@ -1,2 +1,4 @@
 .idea/
 application/configs/config.json
+application/configs/dev.config.json
+application/configs/prod.config.json

@@ -7,7 +7,13 @@ class ConfigHelper {
 
     private function __construct()
     {
-        self::$config = json_decode(file_get_contents('../application/configs/config.json'));
+        $APPLICATION_ENVIRONMENT = getenev('APPLICATION_ENVIRONMENT');
+        if (strlen($APPLICATION_ENVIRONMENT) > 0 && $APPLICATION_ENVIRONMENT == 'dev') {
+            self::$config = json_decode(file_get_contents('../application/configs/dev.config.json'));
+        } else {
+            self::$config = json_decode(file_get_contents('../application/configs/prod.config.json'));
+        }
+
     }
 
     public static function getInstance()
