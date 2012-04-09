@@ -28,6 +28,9 @@
                     submitInProgress = true;
                     $('button[type="submit"]', that.$ctx).addClass('disabled');
                     $('img.ajaxLoader', that.$ctx).addClass('ajaxLoaderProgress');
+
+                    // Reset captcha
+                    $('#recaptcha_widget_div').closest('div.control-group').removeClass('error');
                 }
 
                 $.ajax({
@@ -42,7 +45,7 @@
                                 $('input,textarea').filter('[name="' + data.invalidElements[i] + '"]').closest('div.control-group').addClass('error');
                             }
                         } else if (data.responseType === 'error' && data.invalidCaptcha) {
-                            // Mark Captcha invalid
+                            $('#recaptcha_widget_div').closest('div.control-group').addClass('error');
                         } else if (data.responseType === 'error') {
                             alert(data.responseText);
                         } else {
@@ -63,6 +66,11 @@
   
                 var $this = $(this),
                     elemName = $this.attr('name');
+
+                // Ignore the captcha input
+                if ($this.is('#recaptcha_response_field')) {
+                    return true;
+                }
 
                 $.ajax({
                     'type' : that.$form.attr('method'),

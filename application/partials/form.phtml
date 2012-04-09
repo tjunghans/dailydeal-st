@@ -116,18 +116,26 @@
                 </label>
             </div>
         </div>
-
+<?php if ($ch->getEnvironmnent() != 'dev') {?>
         <div class="control-group">
             <label class="control-label">Sicherheit</label>
             <div class="controls">
-     <?php if ($ch->getEnvironmnent() != 'dev') {?>
+
             <?php
           require_once('../application/libs/recaptchalib.php');
           $publickey = $ch->getConfig()->recaptcha_publickey;
           echo recaptcha_get_html($publickey);
         ?>
 
-        <?php } ?>
+
+            <span class="help-inline">Bitte geben Sie den korrekten Captcha-Code ein.</span>
+            </div>
+        </div>
+<?php } ?>
+        <div class="control-group">
+            <label class="control-label"></label>
+            <div class="controls">
+
             <p class="help-block"><strong>*</strong> Diese Felder sind pflicht.</p>
             </div>
         </div>
