@@ -1,0 +1,8 @@
+{
+    "TITLE" : "Silvio Tossi Daily Deal",
+    "INCORRECT_CAPTCHA" : "Der Captcha-Code ist inkorrekt",
+    "INVALID_SESSION" : "Ungültige Session",
+    "DD_CLIENT_EMAIL_SUBJECT" : "Bestätigung DailyDeal ST",
+    "DD_ST_EMAIL_SUBJECT" : "Dailydeal CSV"
+
+}

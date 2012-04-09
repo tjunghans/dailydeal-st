@@ -1,9 +1,6 @@
 <?php
 session_start();
 require_once('../application/bootstrap.php');
-require_once('../application/libs/ConfigHelper.php');
-$ch = ConfigHelper::getInstance();
-
 if (!isset($_SESSION['post'])) {
     header('location: index.php');
     exit;
@@ -12,7 +9,7 @@ if (!isset($_SESSION['post'])) {
 ?><!DOCTYPE html>
 <html>
 <head>
-    <title><?php echo $ch->getConfig()->labels->title;?></title>
+    <title><?php echo $lh->getLabel('TITLE');?></title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="language" content="de-ch, de">  
     <link href="/images/favicon.ico" rel="shortcut icon">
@@ -41,7 +38,8 @@ if (!isset($_SESSION['post'])) {
                             "Ort" => $sess_post[6],
                             "E-Mail-Adresse" => $sess_post[7],
                             "Gutscheinnummer" => $sess_post[8],
-                            "Telefon" => $sess_post[9]
+                            "Telefon" => $sess_post[9],
+                            "Newsletter" => $sess_post[10],
                         );
                     ?>
 

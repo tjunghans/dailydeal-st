@@ -5,7 +5,7 @@ require_once('../application/bootstrap.php');
 ?><!DOCTYPE html>
 <html>
 <head>
-    <title><?php echo $ch->getConfig()->labels->title;?></title>
+    <title><?php echo $lh->getLabel('TITLE');?></title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="language" content="de-ch, de">  
     <link href="/images/favicon.ico" rel="shortcut icon">
@@ -27,6 +27,7 @@ require_once('../application/bootstrap.php');
         <script type="text/javascript" src="/javascripts/libraries/terrific-1.1.0.min.js"></script>
         <script type="text/javascript" src="/javascripts/project/Tc.bootstrap.js"></script>
         <script type="text/javascript" src="/javascripts/project/Tc.Module.Form.js"></script>
+        <script type="text/javascript" src="/javascripts/project/debug.js"></script>
 
     </div>
     <?php include_once($ch->getPartialsPath() . '/ga.phtml');?>

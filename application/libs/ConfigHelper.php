@@ -7,7 +7,7 @@ class ConfigHelper {
 
     private function __construct()
     {
-        $APPLICATION_ENVIRONMENT = getenev('APPLICATION_ENVIRONMENT');
+        $APPLICATION_ENVIRONMENT = getenv('APPLICATION_ENVIRONMENT');
         if (strlen($APPLICATION_ENVIRONMENT) > 0 && $APPLICATION_ENVIRONMENT == 'dev') {
             self::$config = json_decode(file_get_contents('../application/configs/dev.config.json'));
         } else {

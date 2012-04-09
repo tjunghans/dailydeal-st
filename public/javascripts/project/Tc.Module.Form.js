@@ -41,6 +41,8 @@
                             for (var i = 0, len = data.invalidElements.length; i < len; i++) {
                                 $('input,textarea').filter('[name="' + data.invalidElements[i] + '"]').closest('div.control-group').addClass('error');
                             }
+                        } else if (data.responseType === 'error' && data.invalidCaptcha) {
+                            // Mark Captcha invalid
                         } else if (data.responseType === 'error') {
                             alert(data.responseText);
                         } else {
