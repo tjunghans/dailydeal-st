@@ -89,6 +89,26 @@
 
             });
 
+
+            that.$ctx.on('click', 'button.addVouchernumberInput', function (e) {
+                e.preventDefault();
+
+                var $controlGroup = $(this).closest('div.control-group');
+                var counter = $('div.additionalVoucherInput').length + 1;
+
+                var $additionalVoucherInput = $controlGroup.clone().hide().insertAfter($controlGroup).addClass('additionalVoucherInput').fadeIn();
+                $additionalVoucherInput.find('label').text('Gutscheinnummer ' + (counter + 1));
+
+                $('input[name="vouchernumber"]', $additionalVoucherInput).attr('id', function (index, attr) {
+                    var newId = attr + counter;
+                    $('label', $additionalVoucherInput).attr('for', newId);
+                    return newId;
+                }).attr('name', function (index, attr) {
+                    return attr + '[]';
+                });
+                $(this).remove();
+            });
+
             callback();
         }
 
