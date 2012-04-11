@@ -95,17 +95,32 @@
 
                 var $controlGroup = $(this).closest('div.control-group');
                 var counter = $('div.additionalVoucherInput').length + 1;
+                var voucherInputFieldPrefix = 'add',
+                    voucherInputFieldSuffix = '[]';
 
                 var $additionalVoucherInput = $controlGroup.clone().hide().insertAfter($controlGroup).addClass('additionalVoucherInput').fadeIn();
                 $additionalVoucherInput.find('label').text('Gutscheinnummer ' + (counter + 1));
 
-                $('input[name="vouchernumber"]', $additionalVoucherInput).attr('id', function (index, attr) {
+                var buildNewInputId = function (index, attr) {
                     var newId = attr + counter;
                     $('label', $additionalVoucherInput).attr('for', newId);
                     return newId;
-                }).attr('name', function (index, attr) {
-                    return attr + '[]';
+                };
+
+                var $newVoucherInputField = $('input:text', $additionalVoucherInput);
+
+                // Update cloned attribute values
+                $newVoucherInputField.attr('id', $.proxy(buildNewInputId, this));
+
+                // The name field is an array so brackets are added
+                // To distinguish from original voucher input the prefix 'add' is added;
+                $newVoucherInputField.attr('name', function (index, attr) {
+                    return voucherInputFieldPrefix + attr + voucherInputFieldSuffix;
                 });
+
+                // Clear the input value
+                $newVoucherInputField.val('');
+                
                 $(this).remove();
             });
 
