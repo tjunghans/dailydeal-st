@@ -84,13 +84,17 @@ if (!FormHelper::isValidEmail($_POST['email'])) {
 if (!FormHelper::isValidVoucherCode($_POST['vouchernumber'])) {
     $isValidForm = false;
     $inValidElements[] = 'vouchernumber';
+} else {
+    // Need a variable for vouchernumber in case multiple vouchers have been added
+    $vouchernumber = $_POST['vouchernumber'];
 }
 
 if (isset($_POST['addvouchernumber'])) {
-    var_dump($_POST['addvouchernumber']);
+    // Only the first voucher code is checked
+    $addVoucherNumber = count($_POST['addvouchernumber']) ? $_POST['addvouchernumber'] : array();
+    $additionalVoucherNumbers = count($addVoucherNumber) ? implode(',', $addVoucherNumber) : '';
+    $vouchernumber .= ', ' . $additionalVoucherNumbers;
 }
-
-exit;
 
 // On keyup validation, the field "sendform" is sent as well. The form should only be posted if all fields are valid
 // AND the user clicks on submit.
@@ -114,7 +118,7 @@ if ($isValidForm == false || isset($_POST['sendform']) && $_POST['sendform'] == 
         FormHelper::clean($_POST['postalcode']),
         FormHelper::clean($_POST['city']),
         FormHelper::clean($_POST['email']),
-        FormHelper::clean($_POST['vouchernumber']),
+        FormHelper::clean($vouchernumber),
         FormHelper::clean($_POST['telephone']),
         FormHelper::clean($_POST['newsletter']),
         $date = date('d.m.Y H:i:s', time())
