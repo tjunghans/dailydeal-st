@@ -86,6 +86,12 @@ if (!FormHelper::isValidVoucherCode($_POST['vouchernumber'])) {
     $inValidElements[] = 'vouchernumber';
 }
 
+if (isset($_POST['addvouchernumber'])) {
+    var_dump($_POST['addvouchernumber']);
+}
+
+exit;
+
 // On keyup validation, the field "sendform" is sent as well. The form should only be posted if all fields are valid
 // AND the user clicks on submit.
 if ($isValidForm == false || isset($_POST['sendform']) && $_POST['sendform'] == "false") {

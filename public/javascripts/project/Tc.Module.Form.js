@@ -16,7 +16,15 @@
 
             that.$form = $('form', that.$ctx);
 
-            var submitInProgress = false;
+            var submitInProgress = false,
+                voucherInputFieldPrefix = 'add',
+                voucherInputFieldSuffix = '[]',
+                $additionalVoucherInput = null,
+                counter = 0;
+
+            var createVoucherInput = function () {
+
+            };
 
             var submitHandler = function (e) {
                 e.preventDefault();
@@ -90,22 +98,30 @@
             });
 
 
+
+            var buildNewInputId = function (index, attr) {
+                var newId = attr + counter;
+                $('label', $additionalVoucherInput).attr('for', newId);
+                return newId;
+            };
+
+            var buildNewInputName = function (index, attr) {
+                if (attr.indexOf(voucherInputFieldPrefix) === 0) {
+                    return attr;
+                } else {
+                    return voucherInputFieldPrefix + attr + voucherInputFieldSuffix;
+                }
+            };
+
+
             that.$ctx.on('click', 'button.addVouchernumberInput', function (e) {
                 e.preventDefault();
 
                 var $controlGroup = $(this).closest('div.control-group');
-                var counter = $('div.additionalVoucherInput').length + 1;
-                var voucherInputFieldPrefix = 'add',
-                    voucherInputFieldSuffix = '[]';
+                counter = $('div.additionalVoucherInput').length + 1;
 
-                var $additionalVoucherInput = $controlGroup.clone().hide().insertAfter($controlGroup).addClass('additionalVoucherInput').fadeIn();
+                $additionalVoucherInput = $controlGroup.clone().hide().insertAfter($controlGroup).addClass('additionalVoucherInput').fadeIn();
                 $additionalVoucherInput.find('label').text('Gutscheinnummer ' + (counter + 1));
-
-                var buildNewInputId = function (index, attr) {
-                    var newId = attr + counter;
-                    $('label', $additionalVoucherInput).attr('for', newId);
-                    return newId;
-                };
 
                 var $newVoucherInputField = $('input:text', $additionalVoucherInput);
 
@@ -114,13 +130,12 @@
 
                 // The name field is an array so brackets are added
                 // To distinguish from original voucher input the prefix 'add' is added;
-                $newVoucherInputField.attr('name', function (index, attr) {
-                    return voucherInputFieldPrefix + attr + voucherInputFieldSuffix;
-                });
+                $newVoucherInputField.attr('name', $.proxy(buildNewInputName, this));
 
                 // Clear the input value
                 $newVoucherInputField.val('');
-                
+
+                // Remove original button
                 $(this).remove();
             });
 
