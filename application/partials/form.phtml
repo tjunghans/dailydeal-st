@@ -11,8 +11,8 @@
         <div class="control-group">
             <label class="control-label" for="input00">Anrede*</label>
 
-            <div class="controls" autofocus>
-                <select id="input00" name="title">
+            <div class="controls">
+                <select id="input00" name="title" autofocus>
                     <option>Frau</option>
                     <option>Herr</option>
                 </select>
@@ -112,7 +112,7 @@
             <label class="control-label" for="optionsCheckboxList">Newsletter</label>
             <div class="controls">
                 <label class="checkbox">
-                    <input type="checkbox" name="newsletter" value="true" checked>
+                    <input type="checkbox" name="newsletter" value="true" id="optionsCheckboxList" checked>
                     Ja, bitte senden Sie mir regelmässig Newsletter
                 </label>
             </div>
@@ -146,7 +146,7 @@
         <div class="form-actions">
             <button class="btn btn-primary" type="submit">Absenden</button>
             <button class="btn" type="reset">Abbrechen</button>
-            <img class="ajaxLoader" src="/images/ajax-loader.gif" width="16" height="16" />
+            <img class="ajaxLoader" src="/images/ajax-loader.gif" width="16" height="16" alt="" />
           </div>
     </fieldset>
     <input type="hidden" name="sess" value="<?php echo session_id();?>">

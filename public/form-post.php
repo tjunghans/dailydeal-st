@@ -119,34 +119,19 @@ if ($isValidForm == false || isset($_POST['sendform']) && $_POST['sendform'] == 
         FormHelper::clean($_POST['newsletter'])
     );
 
-
     $csvFields = array_merge($fields, array(date('d.m.Y H:i:s', time())));
 
-    var_dump($csvFields);
-
-    echo $dbh::createDailyDealVoucher($fields);
-
-exit;
-    $sqlInsert = 'INSERT INTO tblDailyDealVoucher (title, firstname, lastname, street, housenumber, postalcode, city, email, vouchernumber, telephone, newsletter) VALUES ()';
-    $dsn = 'mysql:dbname=dbSilvioTossi;host=127.0.0.1';
-    $user = 'root';
-    $password = '';
-    $dbh = new PDO($dsn, $user, $password);
-
-/* Delete all rows from the FRUIT table */
-$count = $dbh->exec("DELETE FROM fruit WHERE colour = 'red'");
-
-/* Return number of rows that were deleted */
-print("Deleted $count rows.\n");
+    // Create db entry
+    $dbh::createDailyDealVoucher($fields);
 
     // Create csv file
     $csvFileName = tempnam($ch->getTempPath(), 'csv');
+
     // Write to csv file
     $csvFileHandle = fopen($csvFileName, 'w+');
     fputcsv($csvFileHandle, $csvFields);
     fseek($csvFileHandle, 0);
     fclose($csvFileHandle);
-
 
     // E-mail csv file to st
     $transport = Swift_SmtpTransport::newInstance($ch->getConfig()->smtp->server, $ch->getConfig()->smtp->port)
