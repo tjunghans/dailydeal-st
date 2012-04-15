@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('../application/bootstrap.php');
+require_once('../application/libs/Swift/lib/swift_required.php');
 
 // Sessionid and form input should be the same
 if (session_id() != $_POST['sess']) {

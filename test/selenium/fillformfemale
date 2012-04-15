@@ -59,7 +59,7 @@
 <tr>
 	<td>type</td>
 	<td>//input[@name='vouchernumber']</td>
-	<td>1234 5678 9012</td>
+	<td>19-18467-ABS</td>
 </tr>
 <tr>
 	<td>type</td>
@@ -73,8 +73,8 @@
 </tr>
 <tr>
 	<td>waitForPageToLoad</td>
-	<td>5000</td>
-	<td>5000</td>
+	<td>7000</td>
+	<td>7000</td>
 </tr>
 <tr>
 	<td>verifyElementPresent</td>
