@@ -13,10 +13,10 @@ $page_title = 'CSV Download';
                     
                     <h1>CSV herunterladen</h1>
                     <?php
-                    $query = "SELECT date(timestamp) as querydate, DATE_FORMAT(timestamp, '%d.%m.%Y') as displaydate FROM tblDailyDealVoucher GROUP BY date(timestamp) ORDER BY timestamp DESC";
+                    $query = "SELECT date(timestamp) as querydate, DATE_FORMAT(timestamp, '%d.%m.%Y') as displaydate, COUNT(*) AS entries FROM tblDailyDealVoucher GROUP BY date(timestamp) ORDER BY timestamp DESC";
                     $result = $dbh::getConnection()->query($query);
                     while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                        echo '<a href="/download-file.php?q=' . $row['querydate'] . '">' . $row['displaydate'] . '</a><br/>';
+                        echo '<a href="/download-file.php?q=' . $row['querydate'] . '">' . $row['displaydate'] . ' (' . $row['entries'] . ')</a><br/>';
                     }
                     ?>
                 </div>
