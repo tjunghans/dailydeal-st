@@ -1,13 +1,8 @@
 <?php
 session_start();
 require_once('../application/bootstrap.php');
-require_once('../application/libs/ConfigHelper.php');
-require_once('../application/libs/FormHelper.php');
 require_once('../application/libs/recaptchalib.php');
 require_once('../application/libs/Swift/lib/swift_required.php');
-$ch = ConfigHelper::getInstance();
-require_once('../application/libs/LabelHelper.php');
-$lh = LabelHelper::getInstance();
 
 // Sessionid and form input should be the same
 if (session_id() != $_POST['sess']) {
@@ -18,6 +13,8 @@ if (session_id() != $_POST['sess']) {
 
     FormHelper::json_response($response);
 }
+
+
 
 $privatekey = $ch->getConfig()->recaptcha_privatekey;
 
@@ -107,9 +104,8 @@ if ($isValidForm == false || isset($_POST['sendform']) && $_POST['sendform'] == 
 
     FormHelper::json_response($response);
 } else {
-
     // Santize data
-    $csvFields = array(
+    $fields = array(
         FormHelper::clean($_POST['title']),
         FormHelper::clean($_POST['firstname']),
         FormHelper::clean($_POST['lastname']),
@@ -120,9 +116,28 @@ if ($isValidForm == false || isset($_POST['sendform']) && $_POST['sendform'] == 
         FormHelper::clean($_POST['email']),
         FormHelper::clean($vouchernumber),
         FormHelper::clean($_POST['telephone']),
-        FormHelper::clean($_POST['newsletter']),
-        $date = date('d.m.Y H:i:s', time())
+        FormHelper::clean($_POST['newsletter'])
     );
+
+
+    $csvFields = array_merge($fields, array(date('d.m.Y H:i:s', time())));
+
+    var_dump($csvFields);
+
+    echo $dbh::createDailyDealVoucher($fields);
+
+exit;
+    $sqlInsert = 'INSERT INTO tblDailyDealVoucher (title, firstname, lastname, street, housenumber, postalcode, city, email, vouchernumber, telephone, newsletter) VALUES ()';
+    $dsn = 'mysql:dbname=dbSilvioTossi;host=127.0.0.1';
+    $user = 'root';
+    $password = '';
+    $dbh = new PDO($dsn, $user, $password);
+
+/* Delete all rows from the FRUIT table */
+$count = $dbh->exec("DELETE FROM fruit WHERE colour = 'red'");
+
+/* Return number of rows that were deleted */
+print("Deleted $count rows.\n");
 
     // Create csv file
     $csvFileName = tempnam($ch->getTempPath(), 'csv');
