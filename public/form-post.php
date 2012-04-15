@@ -1,8 +1,6 @@
 <?php
 session_start();
 require_once('../application/bootstrap.php');
-require_once('../application/libs/recaptchalib.php');
-require_once('../application/libs/Swift/lib/swift_required.php');
 
 // Sessionid and form input should be the same
 if (session_id() != $_POST['sess']) {
@@ -13,31 +11,6 @@ if (session_id() != $_POST['sess']) {
 
     FormHelper::json_response($response);
 }
-
-
-
-$privatekey = $ch->getConfig()->recaptcha_privatekey;
-
-if ($ch->getEnvironmnent() != 'dev') {
-    $resp = recaptcha_check_answer($privatekey,
-       $_SERVER["REMOTE_ADDR"],
-       $_POST["recaptcha_challenge_field"],
-       $_POST["recaptcha_response_field"]);
-
-    if (!$resp->is_valid) {
-        // What happens when the CAPTCHA was entered incorrectly
-        //die ("The reCAPTCHA wasn't entered correctly. Go back and try it again." .
-             //"(reCAPTCHA said: " . $resp->error . ")");
-        $response = array(
-            "responseType" => "error",
-            "responseText" => $lh->getLabel('INCORRECT_CAPTCHA'),
-            "invalidCaptcha" => "true"
-        );
-
-        FormHelper::json_response($response);
-    }
-}
-
 
 // 1. Validate Data
 $isValidForm = true;

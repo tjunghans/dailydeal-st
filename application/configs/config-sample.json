@@ -1,8 +1,10 @@
 {
     "db" : {
+        "dsn" : "mysql:dbname=mydb;host=127.0.0.1;charset=utf8",
         "username" : "",
         "password" : ""
     },
+
     "labels" : {
         "title" : ""
     },
