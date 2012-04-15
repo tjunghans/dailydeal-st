@@ -4,7 +4,12 @@
                     <p class="footerLeftInner">
                         <a href="http://www.silviotossi.com">Silvio Tossi</a> |
                         <a href="http://www.twitter.com/silviotossi">Twitter</a> |
-                        <a href="http://www.facebook.com/silviotossi">Facebook</a> |
+                        <a href="http://www.facebook.com/silviotossi">Facebook</a>
+                        <?php
+                        if (isset($_SESSION['loggedIn']) &&  $_SESSION['loggedIn'] == true) {
+                            echo ' | <a href="/logout.php" style="color: red">Logout</a>';
+                        }
+                        ?>
                     </p>
                 </div>
                 <div class="span2">

@@ -1,4 +1,6 @@
 <?php
+require_once('authenticate.php');
+
 session_start();
 require_once('../application/bootstrap.php');
 
