@@ -1,9 +1,25 @@
-Sehr <?php echo ($title == 'Herr') ? 'geehrter' : 'geehrte';?> <?php echo $title;?> <?php echo $lastname;?>,
+Sehr geehrter <?php echo ($title == 'Herr') ? 'geehrter' : 'geehrte';?> <?php echo $title;?> <?php echo $lastname;?>,
 <br/><br/>
-Wir danken Ihnen für den Erwerb und die Einlösung Ihres DailyDeal-Gutscheines für eine wunderschöne SILVIO TOSSI
-Handtasche zum Sonderpreis. Wir werden Ihre Angaben nun prüfen und das Produkt innert 7 Tagen versenden. Sollte es
-Probleme mit Ihren Angaben geben, werden wir Sie umgehend kontaktieren.
+Vielen Dank für den Erwerb und die Einlösung Ihres DailyDeal-Gutscheins für Silvio Tossi.
 <br/><br/>
-Mit den besten Grüssen, Ihr SILVIO TOSSI Team
+Ihre Lieferdaten:
+<br/><br/>
+<?php echo $title;?> <?php echo $firstname;?> <?php echo $lastname;?><br/>
+<?php echo $street;?> <?php echo $housenumber;?><br/>
+<?php echo $postalcode;?> <?php echo $city;?>
+<br/><br/>
+<?php echo $email;?><br/>
+<?php echo (strlen($telephone) > 0) ? $telephone . '<br/>' : '';?>
+<?php echo ($newsletter == true) ? 'Newsletter: ja' : 'Newsletter: nein';?>
+
+<br/><br/>
+Ihr Gutschein-Code: <?php echo $vouchernumber;?>
+<br/><br/>
+<br/>
+Wir werden Ihre Bestellung schnellst möglich bearbeiten.
+<br/><br/>
+Mit den besten Grüssen<br/>
+Ihr SILVIO TOSSI Team
+
 
         

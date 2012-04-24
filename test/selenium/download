@@ -13,12 +13,12 @@
     </thead><tbody>
     <tr>
 	<td>open</td>
-	<td>http://local.dailydeal.silviotossi/logout.php</td>
+	<td>/logout.php</td>
 	<td></td>
 </tr>
 <tr>
 	<td>open</td>
-	<td>http://local.dailydeal.silviotossi/download.php</td>
+	<td>/download.php</td>
 	<td></td>
 </tr>
 <tr>
@@ -46,13 +46,11 @@
 	<td>3000</td>
 	<td>3000</td>
 </tr>
-
 <tr>
 	<td>verifyTextPresent</td>
 	<td>Logout</td>
 	<td></td>
 </tr>
-
 </tbody></table>
     </body>
     </html>

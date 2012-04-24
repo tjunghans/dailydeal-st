@@ -22,9 +22,6 @@
                 $additionalVoucherInput = null,
                 counter = 0;
 
-            var createVoucherInput = function () {
-
-            };
 
             var submitHandler = function (e) {
                 e.preventDefault();

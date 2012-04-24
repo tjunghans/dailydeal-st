@@ -93,19 +93,8 @@ if ($isValidForm == false || isset($_POST['sendform']) && $_POST['sendform'] == 
         FormHelper::clean($_POST['newsletter'])
     );
 
-    $csvFields = array_merge($fields, array(date('d.m.Y H:i:s', time())));
-
     // Create db entry
     $dbh::createDailyDealVoucher($fields);
-
-    // Create csv file
-    $csvFileName = tempnam($ch->getTempPath(), 'csv');
-
-    // Write to csv file
-    $csvFileHandle = fopen($csvFileName, 'w+');
-    fputcsv($csvFileHandle, $csvFields);
-    fseek($csvFileHandle, 0);
-    fclose($csvFileHandle);
 
     // E-mail csv file to st
     $transport = Swift_SmtpTransport::newInstance($ch->getConfig()->smtp->server, $ch->getConfig()->smtp->port)
@@ -115,9 +104,19 @@ if ($isValidForm == false || isset($_POST['sendform']) && $_POST['sendform'] == 
 
     $mailer = Swift_Mailer::newInstance($transport);
 
-    // $title and $lastname are used by partial include
-    $title = $csvFields[0];
-    $lastname = $csvFields[2];
+    // This variables are used in the required .phtml
+    $title = $fields[0];
+    $firstname = $fields[1];
+    $lastname = $fields[2];
+    $street = $fields[3];
+    $housenumber = $fields[4];
+    $postalcode = $fields[5];
+    $city = $fields[6];
+    $email = $fields[7];
+    $vouchernumber = $fields[8];
+    $telephone = $fields[9];
+    $newsletter = $fields[10];
+
     ob_start ();
     require('../application/partials/emailbody-client.phtml');
     $body = ob_get_contents();
@@ -133,7 +132,7 @@ if ($isValidForm == false || isset($_POST['sendform']) && $_POST['sendform'] == 
       ->setFrom(array($ch->getConfig()->dailymail->fromMail => $ch->getConfig()->dailymail->fromName))
 
       // Set the To addressesiative array with an assoc
-      ->setTo(array($csvFields[7] => $csvFields[1] . ' ' . $csvFields[2]))
+      ->setTo(array($fields[7] => $fields[1] . ' ' . $fields[2]))
 
       // Give it a body
       ->setBody($body)
@@ -148,7 +147,7 @@ if ($isValidForm == false || isset($_POST['sendform']) && $_POST['sendform'] == 
 
     // ST E-Mail
     ob_start ();
-    require('../application/partials/emailbody-st.phtml');
+    require('../application/partials/emailbody-client.phtml'); // same email is sent to Silvio Tossi as client
     $body = ob_get_contents();
     ob_end_clean();
 
@@ -170,7 +169,7 @@ if ($isValidForm == false || isset($_POST['sendform']) && $_POST['sendform'] == 
       ->addPart($body, 'text/html')
 
       // Optionally add any attachments
-      ->attach(Swift_Attachment::fromPath($csvFileName))
+ //     ->attach(Swift_Attachment::fromPath($csvFileName))
 
         ->setCharset('utf-8');
       ;
@@ -178,13 +177,13 @@ if ($isValidForm == false || isset($_POST['sendform']) && $_POST['sendform'] == 
 
     session_start();
     // Store date in session so it can be used on confirmation page
-    $_SESSION['post'] = $csvFields;
+    $_SESSION['post'] = $fields;
 
     $response = array(
         "responseType" => "success",
         "responseText" => "Success",
         "email" => $numSent,
-        "post" => $csvFields
+        "post" => $fields
     );
 
     FormHelper::json_response($response);
