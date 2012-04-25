@@ -9,7 +9,7 @@ class ConfigHelper {
     {
         $APPLICATION_ENVIRONMENT = getenv('APPLICATION_ENVIRONMENT');
         if (strlen($APPLICATION_ENVIRONMENT) > 0) {
-            self::$config = json_decode(file_get_contents('../application/configs/' . $APPLICATION_ENVIRONMENT . '.config.json'));
+            self::$config = json_decode(file_get_contents('../application/configs/' . strtolower($APPLICATION_ENVIRONMENT) . '.config.json'));
         } else {
             self::$config = json_decode(file_get_contents('../application/configs/dev.config.json'));
         }
